@@ -2,17 +2,18 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE = 'MySonar'
+        SONARQUBE = 'MySonar'  // This must match Jenkins > SonarQube server config
     }
 
     tools {
-        maven 'maven 3.8.1'
+        maven 'maven'  // ✅ Use the correct name as per Jenkins configuration
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/ganeshhhhhh/demo-app.git'                 }
+                git url: 'https://github.com/ganeshhhhhh/demo-app.git', branch: 'main'
+            }
         }
 
         stage('Build') {
@@ -30,4 +31,3 @@ pipeline {
         }
     }
 }
-
